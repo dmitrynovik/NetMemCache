@@ -61,9 +61,7 @@ namespace NetMemCache
 
         private string GetKey(T item)
         {
-            var key = _keySelector(item).ToString();
-            if (key == null) throw new ArgumentException($"Could not select key for {item}");
-            return key;
+            return item == null ? null : _keySelector(item).ToString();
         }
 
         private static MemCacheSettings SettingsOrDefault(MemCacheSettings settings)
